@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import StaffList from './components/StaffListComponent';
 import NavbarMod from './components/NavBarComponent';
 import {STAFFS} from './shared/staffs';
+import Main from './components/MainComponent';
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +20,7 @@ class App extends Component {
   render() {
     return(
       <div className='App'>
-        <NavbarMod />
-        <StaffList staffs ={this.state.staffs} />
+        <Main />
       </div>
     )
   }
