@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,CardTitle, NavItem } from 'reactstrap';
+import {Link} from 'react-router-dom';
+import {Breadcrumb , BreadcrumbItem} from 'reactstrap';
 
 function RenderDish({dish}) {
     if(dish != null) {
@@ -20,36 +22,49 @@ function RenderDish({dish}) {
 }
 
 function RenderComments({comments}) {
-    const dishComment = comments.map((cmt) => {
+    if (comments != null) {
         return (
-            <CardBody>
-                <CardTitle>{cmt.comment}</CardTitle>
-                <CardText>
-                    --{cmt.author},
-                    {new Intl.DateTimeFormat("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "2-digit",
-                    }).format(new Date(Date.parse(cmt.date)))}
-                </CardText>
-            </CardBody>
-        );
-    });
-    return dishComment;
+            <div className='col-12 col-md-5 m-1'>
+                <h4>Comments</h4>
+                <ul className='list-unstyled'>
+                    {comments.map((comment) =>{
+                        return (
+                            <li key={comment.id}>
+                                <p>{comment.comment}</p>
+                                <p>
+                                    --{comment.author},
+                                    {new Intl.DateTimeFormat("en-US", {
+                                        year: "numeric",
+                                        month: "short",
+                                        day: "2-digit",
+                                    }).format(new Date(Date.parse(comment.date)))}
+                                </p>
+                            </li>
+                        )
+                    } )}
+                </ul>
+            </div>
+        )
+    } else return <div></div>
 }
 
 const  DishDetail = (props) => {
    if(props.dish != null) {
        return (
            <div className='container'>
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>
+                </div>
                <div className='row'>
                    <RenderDish dish={props.dish} />
-                   <Card className='col-12 col-md-5 m-1'>
-                        <CardBody>
-                            <CardTitle tag= 'h2'>Comments</CardTitle>
-                            <RenderComments comments = {props.dish.comments} />
-                        </CardBody>
-                   </Card>                 
+                   <RenderComments comments = {props.comments} />                 
                </div>
            </div>
        )
