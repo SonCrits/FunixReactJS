@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
-import Menu from './MenuComponent';
-import Contact from './ContactComponent';
-import DishDetail from './DishdetailComponent';
-import { DISHES } from '../shared/dishes';
-import { COMMENTS } from '../shared/comments';
-import { LEADERS } from '../shared/leaders';
-import { PROMOTIONS } from '../shared/promotions';
+
+
+
+
+
+
+
 import Header from './HeaderComponent';
 import Footer from './FooterComnponent';
-import Home from './HomeComponent';
+import StaffList from './StaffListComponent';
 import {Switch , Route , Redirect} from 'react-router-dom';
-import About from './AboutComponent';
+
+import { STAFFS,DEPARTMENTS} from '../shared/staffs';
+import StaffDetail from './StaffDetailComponent';
+import Department from './DepartmentComponent';
+import Salary from './SalaryComponent';
 
 class Main extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        dishes: DISHES,
-        comments : COMMENTS,
-        promotions : PROMOTIONS,
-        leaders : LEADERS
+       staffs : STAFFS,
+       departs : DEPARTMENTS
     };
   }
 
@@ -30,39 +32,30 @@ class Main extends Component {
 
 
   render() {
-    const HomePage = () => {
+    const StaffWithId = ({match}) => {
       return (
-        <Home 
-          dish = {this.state.dishes.filter((dish) => dish.featured)[0]} 
-          promotion = {this.state.promotions.filter((promo) => promo.featured)[0]}
-          leader = {this.state.leaders.filter((leader) => leader.featured)[0]}
+        <StaffDetail
+          staff = {this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]}
         />
       )
     }
 
-    const DishWithId = ({match}) => {
-      return (
-        <DishDetail 
-          dish = {this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
-          comments = {this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
-        />
-      );
-    }
+  
     return (
       <div>
         <Header />
         <Switch>
-          <Route path= '/home' component={HomePage} />
-          <Route exact path='/aboutus' component = {() => <About leaders = {this.state.leaders} />} />
-          <Route exact path= '/menu' component={() => <Menu dishes={this.state.dishes}/>}/>
-          <Route path='/menu/:dishId' component={DishWithId} />
-          <Route exact path= '/contactus' component={Contact} /> 
-          <Redirect to="/home"/>
+          <Route exact path= '/staff' component={ () => <StaffList staffs = {this.state.staffs} />} />
+          <Route exact path='/staff/:staffId' component={StaffWithId} />
+          <Route exact path='/depart' component={() => <Department departs = {this.state.departs} /> } />
+          <Route exact path='/salary' component={() => <Salary staffs = {this.state.staffs} /> } />
+          <Redirect to="/staff"/>
         </Switch>
         <Footer />
       </div>
     );
   }
 }
+
 
 export default Main;
