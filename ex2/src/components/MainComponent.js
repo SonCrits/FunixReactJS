@@ -26,7 +26,7 @@ class Main extends Component {
     const StaffWithId = ({match}) => {
       return (
         // tham chiếu detailstaff với tham số staff = trạng thái staffs lọc tới vị trí đầu tiên trong mảng id  ???
-        // nhờ mentor chỉ bảo tận tình như tham số match ở kia
+        // nhờ mentor chỉ bảo như tham số match ở kia
         <DetailStaff 
           staff = {this.state.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]}
         />

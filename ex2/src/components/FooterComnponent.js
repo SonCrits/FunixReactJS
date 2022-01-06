@@ -6,15 +6,15 @@ function Footer(props) {
     <div className="footer">
         <div className="container">
             <div className="row justify-content-center">             
-                {/* <div className="col-4 offset-1 col-sm-2">
+                <div className="col-4 offset-1 col-sm-2">
                     <h5>Links</h5>
                     <ul className="list-unstyled">
-                        <li><Link to = "/home">Home</Link></li>
-                        <li><Link to = "/aboutus">About Us</Link></li>
-                        <li><Link to = "/menu">Menu</Link></li>
-                        <li><Link to = "/contactus">Contact</Link></li>
+                        <li><Link to = "/staff">Nhân Viên</Link></li>
+                        <li><Link to = "/depart">Phòng Ban</Link></li>
+                        <li><Link to = "/salary">Bảng Lương</Link></li>
+                        {/* <li><Link to = "/contactus">Contact</Link></li> */}
                     </ul>
-                </div> */}
+                </div>
                 <div className="col-7 col-sm-5">
                     <h5>Our Address</h5>
                     <address>
@@ -40,7 +40,7 @@ function Footer(props) {
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>© Copyright 2018 Ristorante Con Fusion</p>
+                    <p>© Copyright 2021 Ristorante Con Fusion</p>
                 </div>
             </div>
         </div>
