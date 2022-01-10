@@ -8,23 +8,27 @@ import StaffList from './components/StaffListComponent';
 import NavbarMod from './components/NavBarComponent';
 import {STAFFS} from './shared/staffs';
 import Main from './components/MainComponent';
+import { Provider } from 'react-redux';
+import {ConfigureStore} from './redux/configureStore';
+
+const store = ConfigureStore();
+
+// provider component này cho phép định cấu hình ứng dụng React của mình
+// rằng Redux store có sẵn cho tất cả các component trong app
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      staffs: STAFFS
-    };
-  }
+  
 
   render() {
     return(
-      <BrowserRouter>
-         <div className='App'>
-            <Main />
-        </div>
-      </BrowserRouter>
-     
+      // provider bao quanh, lay thuoc tinh la thuoc tinh store
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className='App'>
+              <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>   
     )
   }
 }

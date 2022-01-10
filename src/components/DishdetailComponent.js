@@ -49,6 +49,7 @@ function RenderComments({comments}) {
 }
 
 const  DishDetail = (props) => {
+    console.log(props.dish)
    if(props.dish != null) {
        return (
            <div className='container'>
