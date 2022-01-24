@@ -1,13 +1,4 @@
-// nơi triển khai hàm reducer
-import { DISHES } from '../shared/dishes';
-import { COMMENTS } from '../shared/comments';
-import { LEADERS } from '../shared/leaders';
-import { PROMOTIONS } from '../shared/promotions';
 
-
-// trước khi thiết lập hàm reducer, hãy tạo hằng số initialState
-// initialState chỉ là 1 đối tượng JS
-// chuyển state trong MainComponent vào đây
 export const initialState = {
     dishes: DISHES,
     comments : COMMENTS,
